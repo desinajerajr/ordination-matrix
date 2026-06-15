@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Reception Matrix - Personal Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-blue-600 selection:text-white">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+        
+        <div class="border-b border-slate-800 pb-8 mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <h1 class="text-3xl font-black text-white tracking-tight uppercase">The Reception Matrix</h1>
+                <p class="text-slate-400 text-sm mt-1">Personal Confessional Alignment Workspace & Floor Pacing Simulator</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <a href="https://www.pcaac.org/bco/" target="_blank" class="text-xs bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3 py-2 rounded-xl transition font-mono uppercase">PCA BCO</a>
+                <a href="https://www.pcaac.org/resources/wcf/" target="_blank" class="text-xs bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3 py-2 rounded-xl transition font-mono uppercase">Westminster Standards</a>
+                <a href="https://www.blueletterbible.org/" target="_blank" class="text-xs bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3 py-2 rounded-xl transition font-mono uppercase">Bible Study Tools</a>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            
+            <div class="lg:col-span-2 space-y-10">
+                
+                <div>
+                    <h2 class="text-lg font-bold tracking-tight text-white uppercase mb-6">High-Leverage Floor Coordinates</h2>
+                    <div id="coordinates-container" class="space-y-4"></div>
+                </div>
+
+                <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-3xl shadow-2xl">
+                    <div class="mb-6">
+                        <h2 class="text-lg font-bold text-white uppercase tracking-tight">Stated Differences Sandbox Ledger</h2>
+                        <p class="text-xs text-slate-400 mt-1">Draft, refine, and polish your personal ledger exceptions. Changes are automatically saved securely directly within your browser cache.</p>
+                    </div>
+                    <div id="workbook-container" class="space-y-4"></div>
+                </div>
+
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-2xl sticky top-8 space-y-6">
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400">Presbytery Floor Clock Simulator</h3>
+                        <p class="text-[11px] text-slate-500 mt-0.5">Train to deliver accurate theological templates under defensive timing criteria.</p>
+                    </div>
+                    
+                    <div id="active-drill-zone" class="hidden space-y-4">
+                        <div class="flex items-center justify-between bg-slate-950 p-4 rounded-xl border border-slate-800">
+                            <span class="text-xs text-slate-400 font-mono tracking-wider uppercase">Remaining Floor Time</span>
+                            <div id="clock-countdown" class="text-3xl font-mono font-black text-emerald-400 tracking-tighter">60</div>
+                        </div>
+                        
+                        <p id="active-prompt-text" class="text-xs text-slate-300 bg-slate-950 border border-slate-900 p-3 rounded-xl italic leading-relaxed"></p>
+                        
+                        <div class="space-y-1">
+                            <label class="block text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">Live Delivery Typing Box</label>
+                            <textarea id="candidate-live-entry" rows="5" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-blue-600 font-mono leading-relaxed" placeholder="Type your response out completely here to test structural flow pacing..."></textarea>
+                        </div>
+                        
+                        <button onclick="revealShieldText()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-mono font-bold text-xs tracking-widest py-3 rounded-xl transition shadow-lg uppercase">
+                            Compare Shield Text
+                        </button>
+                        
+                        <div id="shield-reveal-zone" class="hidden pt-4 border-t border-slate-800 space-y-2">
+                            <span class="text-[9px] uppercase font-mono font-black tracking-widest text-amber-400 bg-amber-950/40 border border-amber-900/60 px-2 py-0.5 rounded-md">Confessional Shield Response</span>
+                            <p id="active-template-text" class="text-xs text-slate-300 bg-slate-950 p-4 rounded-xl leading-relaxed border border-slate-900 font-mono whitespace-pre-line bg-slate-950"></p>
+                        </div>
+                    </div>
+                    
+                    <div id="active-drill-placeholder" class="text-center py-16 px-4 text-slate-600 text-xs border-2 border-dashed border-slate-800 rounded-2xl font-mono leading-relaxed">
+                        Select a high-leverage coordinate blueprint on the left to fire up the 60-second structural countdown stopwatch.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const coordinatesData = [
+            {
+                id: 1,
+                category: "Pillar 1: Scripture & Authority",
+                prompt: "Defend the inspiration, inerrancy, close of canon, and absolute sufficiency of the written Word.",
+                anchor: "2 Timothy 3:16",
+                template: "Fathers and brothers, I believe that the Holy Scriptures of the Old and New Testaments are the Word of God written, and the only infallible and inerrant rule of faith and practice. As articulated in Chapter 1 of the Westminster Confession, all Scripture is given by verbal plenary inspiration of God. Furthermore, I affirm its absolute sufficiency. God has fully and completely revealed everything necessary for His own glory, man's salvation, faith, and life within the sixty-six books of the written canon. Therefore, those former ways of God revealing His will unto His people have completely ceased. There is no normative, fresh revelation, nor is there any modern-day prophetic or apostolic office operating in the church today. My theological anchor for this is 2 Timothy 3:16."
+            },
+            {
+                id: 2,
+                category: "Pillar 2 & 4: Covenant & Justification",
+                prompt: "Explain Adam's federal headship, the covenant of works, active vs. passive obedience, and forensic justification.",
+                anchor: "Genesis 3:15, Romans 3:21-26",
+                template: "Fathers and brothers, I affirm that God’s covenantal dealings with humanity are divided into the Covenant of Works and the Covenant of Grace, as outlined in Chapter 7 of the Westminster Confession. The Covenant of Works was made with Adam as a public person and federal head, representing all humanity descending from him by ordinary generation (Genesis 2:16-17). The condition was perfect, personal, and perpetual obedience. Because Adam failed, God graciously instituted the Covenant of Grace, first announced in the Protoevangelium of Genesis 3:15, offering life and salvation by Jesus Christ.\n\nThe vital link to our Justification (WCF Chapter 11) is that the Covenant of Works was never abolished; it was perfectly fulfilled by Jesus Christ, the Second Adam, on our behalf. Through His active obedience, He kept the law perfectly, earning our positive righteousness. Through His passive obedience, He endured the penalty of death on the cross, fully satisfying the curse of the broken law. In justification, God does not infuse righteousness into us; rather, He pardons our sins and accounts us as righteous solely by imputing both the active and passive obedience of Christ to us, received through faith alone."
+            },
+            {
+                id: 3,
+                category: "Pillar 6 & Polity: Church Power",
+                prompt: "Define the nature and limits of church power, court jurisdiction, and liberty of conscience in matters adiaphora.",
+                anchor: "WCF 20, BCO 25, BCO Preface",
+                template: "Fathers and brothers, I affirm that the power of the church is wholly spiritual, moral, and ministerial, as taught in WCF Chapter 31 and BCO Chapters 1 through 4. Church courts possess no temporal or civil authority; they can neither bind the conscience nor compel obedience in matters adiaphorous—that is, things indifferent or left uncommanded by the Word of God. The jurisdiction of our courts is strictly limited to the spiritual oversight of God’s house. Local church property belongs exclusively to the congregation, not to the higher courts, as explicitly preserved in BCO Chapter 25. Therefore, while I hold that church orders and sentences are valid when consonant with God's Word, I firmly maintain that God alone is Lord of the conscience, and has left it free from the doctrines and commandments of men which are in anything contrary to His Word, or beside it, in matters of faith or worship."
+            }
+        ];
+
+        const initialWorkbookData = [
+            { id: "wcf_21_8", section: "WCF 21.8", title: "Sabbath Recreation Clause", text: "I take exception to the strict recreation clause. I believe that works of necessity, mercy, and holy resting do not preclude restorative, non-commercial family fellowship or activities that do not bind the consciences of others or disrupt community worship.", checked: true },
+            { id: "wcf_22_7", section: "WCF 22.7", title: "Lawful Oaths and Vows", text: "", checked: false },
+            { id: "wcf_24_4", section: "WCF 24.4", title: "Marriage and Divorce", text: "", checked: false },
+            { id: "bco_15_2", section: "BCO 15-2", title: "Specific Committee Powers", text: "", checked: false }
+        ];
+
+        let clockTicker;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCoordinates();
+            initializeAndRenderWorkbook();
+        });
+
+        function renderCoordinates() {
+            const container = document.getElementById('coordinates-container');
+            container.innerHTML = coordinatesData.map(c => `
+                <div class="bg-slate-900/60 border border-slate-800/80 p-6 rounded-2xl shadow-xl">
+                    <div class="flex justify-between items-start gap-4 mb-3">
+                        <span class="text-[11px] font-mono font-bold tracking-wider px-2.5 py-1 bg-blue-950 text-blue-400 rounded-lg border border-blue-900/50 uppercase">${c.category}</span>
+                        <span class="text-xs font-mono text-slate-500 bg-slate-950 px-2 py-0.5 rounded border border-slate-900">${c.anchor}</span>
+                    </div>
+                    <h3 class="text-sm font-semibold text-slate-200 mb-4">"${c.prompt}"</h3>
+                    <button onclick="triggerClock('${c.category}', \`${c.prompt}\`, \`${c.template}\`)" class="text-xs font-bold font-mono text-emerald-400 hover:text-emerald-300 border border-emerald-900/50 hover:border-emerald-700 bg-emerald-950/20 px-4 py-2 rounded-xl transition">
+                        RUN PACING DRILL
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function initializeAndRenderWorkbook() {
+            if (!localStorage.getItem('matrix_workbook_cache')) {
+                localStorage.setItem('matrix_workbook_cache', JSON.stringify(initialWorkbookData));
+            }
+            renderWorkbook();
+        }
+
+        function renderWorkbook() {
+            const cachedData = localStorage.getItem('matrix_workbook_cache');
+            const data = cachedData ? JSON.parse(cachedData) : initialWorkbookData;
+            const container = document.getElementById('workbook-container');
+            
+            container.innerHTML = data.map(e => `
+                <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl shadow-inner space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-900 pb-3">
+                        <span class="text-xs font-mono font-bold text-amber-400 tracking-wider bg-amber-950/20 border border-amber-900/40 px-2 py-1 rounded">${e.section} — ${e.title}</span>
+                        <label class="inline-flex items-center text-xs text-slate-400 cursor-pointer select-none">
+                            <input type="checkbox" id="check-${e.id}" onchange="syncWorkbookState('${e.id}')" ${e.checked ? 'checked' : ''} class="rounded bg-slate-900 border-slate-700 text-blue-600 focus:ring-0 mr-2 h-4 w-4"> 
+                            Declare Difference
+                        </label>
+                    </div>
+                    <textarea id="text-${e.id}" oninput="syncWorkbookState('${e.id}')" rows="3" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-xs text-slate-300 font-mono focus:outline-none focus:border-blue-600 transition leading-relaxed" placeholder="Frame exception parameters here using standard constitutional language...">${e.text}</textarea>
+                </div>
+            `).join('');
+        }
+
+        function syncWorkbookState(id) {
+            const cachedData = localStorage.getItem('matrix_workbook_cache');
+            if (!cachedData) return;
+            
+            const data = JSON.parse(cachedData);
+            const item = data.find(e => e.id === id);
+            if (item) {
+                item.checked = document.getElementById(`check-${id}`).checked;
+                item.text = document.getElementById(`text-${id}`).value;
+                localStorage.setItem('matrix_workbook_cache', JSON.stringify(data));
+            }
+        }
+
+        function triggerClock(category, prompt, template) {
+            document.getElementById('active-drill-placeholder').classList.add('hidden');
+            document.getElementById('active-drill-zone').classList.remove('hidden');
+            document.getElementById('shield-reveal-zone').classList.add('hidden');
+            document.getElementById('candidate-live-entry').value = '';
+            document.getElementById('active-prompt-text').innerText = category + ": " + prompt;
+            document.getElementById('active-template-text').innerText = template;
+            
+            let durationRemaining = 60;
+            const clockDisplay = document.getElementById('clock-countdown');
+            clockDisplay.innerText = durationRemaining;
+            clockDisplay.className = "text-3xl font-mono font-black text-emerald-400 tracking-tighter";
+            
+            clearInterval(clockTicker);
+            clockTicker = setInterval(() => {
+                durationRemaining--;
+                clockDisplay.innerText = durationRemaining;
+                if(durationRemaining <= 15) {
+                    clockDisplay.className = "text-3xl font-mono font-black text-red-500 tracking-tighter animate-pulse";
+                } else if(durationRemaining <= 30) {
+                    clockDisplay.className = "text-3xl font-mono font-black text-amber-500 tracking-tighter";
+                }
+                if(durationRemaining <= 0) {
+                    clearInterval(clockTicker);
+                    clockDisplay.innerText = "STOP TALKING";
+                }
+            }, 1000);
+        }
+
+        function revealShieldText() {
+            document.getElementById('shield-reveal-zone').classList.remove('hidden');
+            clearInterval(clockTicker);
+        }
+    </script>
+</body>
+</html>
