@@ -6,10 +6,11 @@
     <title>The Reception Matrix - Personal Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-blue-600 selection:text-white">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-blue-600 selection:text-white pb-40">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
         
+        <!-- Application Navigation Header -->
         <div class="border-b border-slate-800 pb-8 mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
                 <h1 class="text-3xl font-black text-white tracking-tight uppercase">The Reception Matrix</h1>
@@ -22,64 +23,79 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <!-- Main Workspace Grid: Balanced Side-by-Side Views -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
             
-            <div class="lg:col-span-2 space-y-10">
-                
+            <!-- Left Column: All 6 High-Leverage Doctrinal Pillars -->
+            <div class="space-y-6">
                 <div>
-                    <h2 class="text-lg font-bold tracking-tight text-white uppercase mb-6">High-Leverage Floor Coordinates</h2>
-                    <div id="coordinates-container" class="space-y-4"></div>
+                    <h2 class="text-lg font-bold tracking-tight text-white uppercase mb-2">High-Leverage Floor Coordinates</h2>
+                    <p class="text-xs text-slate-400 mb-6">Select a doctrinal coordinate track below to load it directly into the tactical pacing simulator.</p>
                 </div>
-
-                <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-3xl shadow-2xl">
-                    <div class="mb-6">
-                        <h2 class="text-lg font-bold text-white uppercase tracking-tight">Stated Differences Sandbox Ledger</h2>
-                        <p class="text-xs text-slate-400 mt-1">Draft, refine, and polish your personal ledger exceptions. Changes are automatically saved securely directly within your browser cache.</p>
-                    </div>
-                    <div id="workbook-container" class="space-y-4"></div>
-                </div>
-
+                <div id="coordinates-container" class="space-y-4"></div>
             </div>
 
+            <!-- Right Column: Stated Differences Sandbox Ledger -->
             <div class="space-y-6">
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-2xl sticky top-8 space-y-6">
-                    <div>
-                        <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400">Presbytery Floor Clock Simulator</h3>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Train to deliver accurate theological templates under defensive timing criteria.</p>
-                    </div>
-                    
-                    <div id="active-drill-zone" class="hidden space-y-4">
-                        <div class="flex items-center justify-between bg-slate-950 p-4 rounded-xl border border-slate-800">
-                            <span class="text-xs text-slate-400 font-mono tracking-wider uppercase">Remaining Floor Time</span>
-                            <div id="clock-countdown" class="text-3xl font-mono font-black text-emerald-400 tracking-tighter">60</div>
-                        </div>
-                        
-                        <p id="active-prompt-text" class="text-xs text-slate-300 bg-slate-950 border border-slate-900 p-3 rounded-xl italic leading-relaxed"></p>
-                        
-                        <div class="space-y-1">
-                            <label class="block text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">Live Delivery Typing Box</label>
-                            <textarea id="candidate-live-entry" rows="5" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-blue-600 font-mono leading-relaxed" placeholder="Type your response out completely here to test structural flow pacing..."></textarea>
-                        </div>
-                        
-                        <button onclick="revealShieldText()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-mono font-bold text-xs tracking-widest py-3 rounded-xl transition shadow-lg uppercase">
-                            Compare Shield Text
-                        </button>
-                        
-                        <div id="shield-reveal-zone" class="hidden pt-4 border-t border-slate-800 space-y-2">
-                            <span class="text-[9px] uppercase font-mono font-black tracking-widest text-amber-400 bg-amber-950/40 border border-amber-900/60 px-2 py-0.5 rounded-md">Confessional Shield Response</span>
-                            <p id="active-template-text" class="text-xs text-slate-300 bg-slate-950 p-4 rounded-xl leading-relaxed border border-slate-900 font-mono whitespace-pre-line bg-slate-950"></p>
-                        </div>
-                    </div>
-                    
-                    <div id="active-drill-placeholder" class="text-center py-16 px-4 text-slate-600 text-xs border-2 border-dashed border-slate-800 rounded-2xl font-mono leading-relaxed">
-                        Select a high-leverage coordinate blueprint on the left to fire up the 60-second structural countdown stopwatch.
-                    </div>
+                <div>
+                    <h2 class="text-lg font-bold text-white uppercase tracking-tight mb-2">Stated Differences Sandbox Ledger</h2>
+                    <p class="text-xs text-slate-400 mb-6">Draft, refine, and polish your personal ledger exceptions. Changes save automatically directly to your browser storage.</p>
                 </div>
+                <div id="workbook-container" class="space-y-4"></div>
             </div>
 
         </div>
     </div>
 
+    <!-- Sticky Floating Floor Clock Simulator Panel -->
+    <div class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 shadow-2xl z-50 p-6">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Default Inactive State Message -->
+            <div id="active-drill-placeholder" class="text-center py-4 text-slate-400 text-xs font-mono tracking-wide">
+                ⚡ Select any high-leverage coordinate track blueprint above to fire up the 60-second structural countdown stopwatch.
+            </div>
+            
+            <!-- Active Drill Dashboard Configuration -->
+            <div id="active-drill-zone" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                
+                <!-- Countdown Clock Module -->
+                <div class="lg:col-span-2 flex flex-row lg:flex-col items-center justify-between lg:justify-center bg-slate-950 p-4 rounded-xl border border-slate-800 h-full text-center min-w-[140px]">
+                    <span class="text-[10px] text-slate-500 font-mono tracking-wider uppercase lg:mb-1">Floor Clock</span>
+                    <div id="clock-countdown" class="text-3xl font-mono font-black text-emerald-400 tracking-tighter">60</div>
+                </div>
+                
+                <!-- Track Meta Details & Input Field -->
+                <div class="lg:col-span-6 space-y-2">
+                    <p id="active-prompt-text" class="text-xs text-blue-400 font-mono font-semibold truncate bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-900"></p>
+                    <textarea id="candidate-live-entry" rows="2" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-blue-600 font-mono leading-relaxed resize-none" placeholder="Type your live response pacing out here completely to match floor parameters..."></textarea>
+                </div>
+                
+                <!-- Tactical Control Actions -->
+                <div class="lg:col-span-4 flex flex-col gap-2 h-full justify-center">
+                    <button onclick="revealShieldText()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-mono font-bold text-xs tracking-widest py-2.5 rounded-xl transition shadow-lg uppercase">
+                        Compare Shield Text
+                    </button>
+                    <button onclick="hideClockSimulator()" class="w-full bg-slate-950 hover:bg-slate-800 text-slate-400 hover:text-slate-300 font-mono font-semibold text-[10px] tracking-wide py-1.5 rounded-lg border border-slate-800 transition uppercase">
+                        Minimize Panel
+                    </button>
+                </div>
+
+                <!-- Expanded Response Panel Grid Reveal -->
+                <div id="shield-reveal-zone" class="hidden lg:col-span-12 pt-4 border-t border-slate-800 grid grid-cols-1 lg:grid-cols-12 gap-4">
+                    <div class="lg:col-span-2">
+                        <span class="inline-block text-[9px] uppercase font-mono font-black tracking-widest text-amber-400 bg-amber-950/40 border border-amber-900/60 px-2 py-1 rounded-md">Confessional Blueprint</span>
+                    </div>
+                    <div class="lg:col-span-10">
+                        <p id="active-template-text" class="text-xs text-slate-300 bg-slate-950 p-4 rounded-xl leading-relaxed border border-slate-900 font-mono whitespace-pre-line max-h-48 overflow-y-auto"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Controller Kernel Logic -->
     <script>
         const coordinatesData = [
             {
@@ -108,7 +124,7 @@
                 category: "Pillar 4: Covenant & Justification",
                 prompt: "Explain Adam's federal headship, the covenant of works, active vs. passive obedience, and forensic justification.",
                 anchor: "Genesis 3:15, Romans 3:24-25, Romans 5:19, WCF 7 & 11",
-                template: "Fathers and brothers, I affirm that God’s covenantal dealings with humanity are divided into the Covenant of Works and the Covenant of Grace, as outlined in Chapter 7 of the Westminster Confession. The Covenant of Works was made with Adam as a federal head representing all humanity descending by ordinary generation. The condition was perfect, personal, and perpetual obedience. Because Adam failed, God graciously instituted the Covenant of Grace, first announced in Genesis 3:15, offering life and salvation by Jesus Christ.\n\nThe vital link to Justification (WCF 11) is that the Covenant of Works was perfectly fulfilled by Jesus Christ, the Second Adam, on our behalf. Through His active obedience, He kept the law perfectly, earning our positive righteousness. Through His passive obedience, He endured the penalty of death on the cross, satisfying the curse of the law. In justification, God pardons our sins and accounts us as righteous solely by imputing both the active and passive obedience of Christ to us, received through faith alone."
+                template: "Fathers and brothers, I affirm that God’s covenantal dealings with humanity are divided into the Covenant of Works and the Covenant of Grace, as outlined in Chapter 7 of the Westminster Confession. The Covenant of Works was made with Adam as a federal head representing all humanity descending by ordinary generation. The condition was perfect, personal, and perpetual obedience. Because Adam failed, God graciously instituted the Covenant of Grace, first announced in Genesis 3:15, offering life and salvation by Jesus Christ.\n\nThe vital link to Justification (WCF 11) is that the Covenant of Works was never abolished; it was perfectly fulfilled by Jesus Christ, the Second Adam, on our behalf. Through His active obedience, He kept the law perfectly, earning our positive righteousness. Through His passive obedience, He endured the penalty of death on the cross, satisfying the curse of the law. In justification, God pardons our sins and accounts us as righteous solely by imputing both the active and passive obedience of Christ to us, received through faith alone."
             },
             {
                 id: 5,
@@ -143,14 +159,14 @@
         function renderCoordinates() {
             const container = document.getElementById('coordinates-container');
             container.innerHTML = coordinatesData.map(c => `
-                <div class="bg-slate-900/60 border border-slate-800/80 p-6 rounded-2xl shadow-xl">
-                    <div class="flex justify-between items-start gap-4 mb-3">
-                        <span class="text-[11px] font-mono font-bold tracking-wider px-2.5 py-1 bg-blue-950 text-blue-400 rounded-lg border border-blue-900/50 uppercase">${c.category}</span>
-                        <span class="text-xs font-mono text-slate-500 bg-slate-950 px-2 py-0.5 rounded border border-slate-900">${c.anchor}</span>
+                <div class="bg-slate-900/60 border border-slate-800/80 p-5 rounded-2xl shadow-xl transition hover:border-slate-700">
+                    <div class="flex justify-between items-start gap-4 mb-2">
+                        <span class="text-[10px] font-mono font-bold tracking-wider px-2 py-0.5 bg-blue-950 text-blue-400 rounded-lg border border-blue-900/50 uppercase">${c.category}</span>
+                        <span class="text-[11px] font-mono text-slate-500 bg-slate-950 px-2 py-0.5 rounded border border-slate-900">${c.anchor}</span>
                     </div>
-                    <h3 class="text-sm font-semibold text-slate-200 mb-4">"${c.prompt}"</h3>
-                    <button onclick="triggerClock('${c.category}', \`${c.prompt}\`, \`${c.template}\`)" class="text-xs font-bold font-mono text-emerald-400 hover:text-emerald-300 border border-emerald-900/50 hover:border-emerald-700 bg-emerald-950/20 px-4 py-2 rounded-xl transition">
-                        RUN PACING DRILL
+                    <h3 class="text-xs text-slate-300 mb-3 font-medium">"${c.prompt}"</h3>
+                    <button onclick="triggerClock('${c.category}', \`${c.prompt}\`, \`${c.template}\`)" class="text-[10px] font-bold font-mono text-emerald-400 hover:text-emerald-300 border border-emerald-900/50 hover:border-emerald-700 bg-emerald-950/20 px-3 py-1.5 rounded-lg transition uppercase tracking-wider">
+                        Run Pacing Drill
                     </button>
                 </div>
             `).join('');
@@ -169,15 +185,15 @@
             const container = document.getElementById('workbook-container');
             
             container.innerHTML = data.map(e => `
-                <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl shadow-inner space-y-4">
-                    <div class="flex justify-between items-center border-b border-slate-900 pb-3">
-                        <span class="text-xs font-mono font-bold text-amber-400 tracking-wider bg-amber-950/20 border border-amber-900/40 px-2 py-1 rounded">${e.section} — ${e.title}</span>
+                <div class="bg-slate-900/40 border border-slate-800 p-5 rounded-2xl shadow-inner space-y-3">
+                    <div class="flex justify-between items-center border-b border-slate-950 pb-2.5">
+                        <span class="text-xs font-mono font-bold text-amber-400 tracking-wider bg-amber-950/20 border border-amber-900/40 px-2 py-0.5 rounded">${e.section} — ${e.title}</span>
                         <label class="inline-flex items-center text-xs text-slate-400 cursor-pointer select-none">
                             <input type="checkbox" id="check-${e.id}" onchange="syncWorkbookState('${e.id}')" ${e.checked ? 'checked' : ''} class="rounded bg-slate-900 border-slate-700 text-blue-600 focus:ring-0 mr-2 h-4 w-4"> 
                             Declare Difference
                         </label>
                     </div>
-                    <textarea id="text-${e.id}" oninput="syncWorkbookState('${e.id}')" rows="3" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-xs text-slate-300 font-mono focus:outline-none focus:border-blue-600 transition leading-relaxed" placeholder="Frame exception parameters here using standard constitutional language...">${e.text}</textarea>
+                    <textarea id="text-${e.id}" oninput="syncWorkbookState('${e.id}')" rows="3" class="w-full bg-slate-950 border border-slate-900 rounded-xl p-3 text-xs text-slate-300 font-mono focus:outline-none focus:border-blue-600 transition leading-relaxed" placeholder="Frame exception parameters here using standard constitutional language...">${e.text}</textarea>
                 </div>
             `).join('');
         }
@@ -219,13 +235,19 @@
                 }
                 if(durationRemaining <= 0) {
                     clearInterval(clockTicker);
-                    clockDisplay.innerText = "STOP TALKING";
+                    clockDisplay.innerText = "00";
                 }
             }, 1000);
         }
 
         function revealShieldText() {
             document.getElementById('shield-reveal-zone').classList.remove('hidden');
+            clearInterval(clockTicker);
+        }
+
+        function hideClockSimulator() {
+            document.getElementById('active-drill-zone').classList.add('hidden');
+            document.getElementById('active-drill-placeholder').classList.remove('hidden');
             clearInterval(clockTicker);
         }
     </script>
