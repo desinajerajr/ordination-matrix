@@ -10,7 +10,6 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
         
-        <!-- Application Navigation Header -->
         <div class="border-b border-slate-800 pb-8 mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
                 <h1 class="text-3xl font-black text-white tracking-tight uppercase">The Reception Matrix</h1>
@@ -23,19 +22,15 @@
             </div>
         </div>
 
-        <!-- Main Workspace Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
             
-            <!-- Left Column: Coordinate Framework Tracks & Workbook Ledger -->
             <div class="lg:col-span-2 space-y-10">
                 
-                <!-- Core Strategic Coordinates -->
                 <div>
                     <h2 class="text-lg font-bold tracking-tight text-white uppercase mb-6">High-Leverage Floor Coordinates</h2>
                     <div id="coordinates-container" class="space-y-4"></div>
                 </div>
 
-                <!-- Personal Exceptions Workbook Module -->
                 <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-3xl shadow-2xl">
                     <div class="mb-6">
                         <h2 class="text-lg font-bold text-white uppercase tracking-tight">Stated Differences Sandbox Ledger</h2>
@@ -46,7 +41,6 @@
 
             </div>
 
-            <!-- Right Column: Stationary Live Examination Clock Sandbox -->
             <div class="space-y-6">
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-2xl sticky top-8 space-y-6">
                     <div>
@@ -86,7 +80,6 @@
         </div>
     </div>
 
-    <!-- Application Controller Kernel Logic -->
     <script>
         // Core Theological Engine Datastore
         const coordinatesData = [
@@ -152,7 +145,8 @@
         }
 
         function renderWorkbook() {
-            const data = JSON.getObj('matrix_workbook_cache');
+            const cachedData = localStorage.getItem('matrix_workbook_cache');
+            const data = cachedData ? JSON.parse(cachedData) : initialWorkbookData;
             const container = document.getElementById('workbook-container');
             
             container.innerHTML = data.map(e => `
@@ -170,17 +164,16 @@
         }
 
         function syncWorkbookState(id) {
-            const data = JSON.getObj('matrix_workbook_cache');
+            const cachedData = localStorage.getItem('matrix_workbook_cache');
+            if (!cachedData) return;
+            
+            const data = JSON.parse(cachedData);
             const item = data.find(e => e.id === id);
             if (item) {
                 item.checked = document.getElementById(`check-${id}`).checked;
                 item.text = document.getElementById(`text-${id}`).value;
                 localStorage.setItem('matrix_workbook_cache', JSON.stringify(data));
             }
-        }
-
-        JSON.getObj = function(key) {
-            return JSON.parse(localStorage.getItem(key));
         }
 
         // Live Clock Engine Execution Logic
